@@ -14,13 +14,15 @@ import background.py as bg
 import playerInfo
 
 var score = 0
-playerSprite = /img/player.png
+playerSprite = /assets/player.png
 
 var running = True
 
-def draw(running):
+def draw(running, sprite): ##draw each individual sprite
 
 
 def fall():
 
 
+if __name__ == "__main__":
+    game = 
