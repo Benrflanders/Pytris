@@ -16,19 +16,28 @@ label = pyglet.text.Label('Hello, world',
 def on_draw():
     window.clear()
     label.draw()
-    image.blit(0,0)
+    image.blit(window.,0)
 
 @window.event
 def on_key_press(symbol, modifiers):
     if symbol == key.RIGHT:
         print("Right arrow was pressed")
-    if symbol == key.LEFT:
+    elif symbol == key.LEFT:
         print("LEFT")
-    if symbol == key.DOWN:
+    elif symbol == key.DOWN:
+        fall(2)
         print("DOWN")
-    if symbol == key.UP:
+    elif symbol == key.UP:
         print("UP")
-    if symbol == key.SPACE:
+    elif symbol == key.SPACE:
         print("SPACE")
-    
+
+@window.event
+def on_key_release(symbol, modifiers):
+    if symbol == key.DOWN:
+        fall(1)
+
+
+
+
 pyglet.app.run()

@@ -9,85 +9,52 @@ when the controlled/current block touched the ground or another block:
     if any non controlled block touches the intersect line -> GAME OVER
 
 """
-import tetris
-##import block
-##import board
-##import window
-##import playerInfo
-from pyglet import event, app, text
-from pyglet.window import Window, key
-##from pyglet.app import EventLoop
-win = Window(320,640,visible=False)
-hello_label = text.Label('Hello, World!', font_name = 'Times New Roman',
-                   font_size = 36,
-                   x=win.width/2, y=win.height/2)
-"""
-class My    Window:
-    def __init__(self, x, y, visible=True):
-        global app
-        app = self
-    def event(self, func):
-        self.what_todo = func
-    def run(self):
-        self.what_todo()
-    def set_visible(isVisible=True):
-        visible=isVisible
-"""
-player_score = 0
-test_block = "/assets/SquareBlock.png"
+import pyglet
+import block
+from pyglet.window import key
 
-running = True
 
-event_loop = app.EventLoop()
+#create board, blocks,
+#board_image = 
+#block_directory = " "
+board = board.create_board(board_width, board_height)
+block = block.create_block() #will take in a list of blocks
 
-##def draw(): ##draw each individual sprite
-    
+#Create main window
+win = pyglet.window.Window(200, 600, caption='Pytris')
 
-def fall():
-    print("fall!")
 
-def getNewBlock():
 
-    block = randomBlock()
-    return block
-
-def getNextBlock(): 
-    return test_block
-
-@event_loop.event
-def on_window_close(Window):
-    event_loop.exit()
-    return pyglet.event.EVENT_HANDLED
-
-@event_loop.event
-def on_key_press(key):
-    print("on_key_press")
-
-@Window.event
+@window.event
 def on_draw():
-    win.clear()
+    window.clear()
     label.draw()
+    image.blit(window.,0)
+
+@window.event
+def on_key_press(symbol, modifiers):
+    if symbol == key.RIGHT:
+        print("Right arrow was pressed")
+    elif symbol == key.LEFT:
+        print("LEFT")
+    elif symbol == key.DOWN:
+        fall(2)
+        print("DOWN")
+    elif symbol == key.UP:
+        print("UP")
+    elif symbol == key.SPACE:
+        print("SPACE")
+
+@window.event
+def on_key_release(symbol, modifiers):
+    if symbol == key.DOWN:
+        fall(1)
+
+#Game updater
+def update():
+    #if player block is touching any blocks below
 
 
-def main():
-    ##while running:
-    ##    draw()
-    currBlock = test_block
+#Start Game
 
-    @win.event
-    def on_draw():
-        print("drawing...")
-    
-    """keys = key.KeyStateHandler()
-    if keys[key.SPACE]:
-        print("Space bar pressed!")
-    """
-    win.set_visible()
-    event_loop.run()
-
-
-
-if __name__ == '__main__':
-    main()
-
-
+pyglet.app.run()

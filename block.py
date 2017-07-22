@@ -1,7 +1,15 @@
+import pyglet
+
 """
 A Block class
 
 """
 
-class Model(object):
-    block_image = "/assets/SquareBlock.png"
+class Block(object):
+    image = pyglet.image.load('assets/SquareBlock.png')
+
+    def fall():
+        print("falling")
+
+    
+    
