@@ -14,12 +14,15 @@ import tetris
 ##import board
 ##import window
 ##import playerInfo
-from pyglet import event, app
+from pyglet import event, app, text
 from pyglet.window import Window, key
 ##from pyglet.app import EventLoop
-
-
-class Window:
+win = Window(320,640,visible=False)
+hello_label = text.Label('Hello, World!', font_name = 'Times New Roman',
+                   font_size = 36,
+                   x=win.width/2, y=win.height/2)
+"""
+class My    Window:
     def __init__(self, x, y, visible=True):
         global app
         app = self
@@ -29,7 +32,7 @@ class Window:
         self.what_todo()
     def set_visible(isVisible=True):
         visible=isVisible
-
+"""
 player_score = 0
 test_block = "/assets/SquareBlock.png"
 
@@ -52,21 +55,25 @@ def getNextBlock():
     return test_block
 
 @event_loop.event
-def on_window_close(window):
+def on_window_close(Window):
     event_loop.exit()
     return pyglet.event.EVENT_HANDLED
 
 @event_loop.event
 def on_key_press(key):
     print("on_key_press")
-    
+
+@Window.event
+def on_draw():
+    win.clear()
+    label.draw()
 
 
 def main():
     ##while running:
     ##    draw()
     currBlock = test_block
-    win = Window(320,640,visible=True)
+
     @win.event
     def on_draw():
         print("drawing...")
