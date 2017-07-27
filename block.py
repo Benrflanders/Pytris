@@ -1,5 +1,6 @@
 import pyglet
 import board #uses the board class to check collisions
+from pyglet import sprite
 """
 A Block class
 

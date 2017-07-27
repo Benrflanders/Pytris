@@ -23,7 +23,6 @@ import block
 from pyglet.window import key
 from pyglet.text import Label
 
-
 #create board, blocks,
 #board_image = 
 #block_directory = " "
@@ -33,15 +32,15 @@ from pyglet.text import Label
 #Get Resources
 image = pyglet.image.load('assets/SquareBlock.png')
 
-
-#each block image will have a set size based on a 3x3 grid 
-
-
-
-#Create main window
-win = pyglet.window.Window(400, 800, caption='Pytris')
-
 curr_block = block.Block()
+
+#main window
+win = pyglet.window.Window(400, 800, caption='Pytris')
+start_x = win.width/2
+start_y = win.height-image.height
+
+player_block = pyglet.sprite.Sprite(image, x=start_x, y=start_y)
+
 
 def game_over():
     game_over_text = pyglet.text("GAME OVER",
@@ -54,6 +53,7 @@ def game_over():
 @win.event
 def on_draw():
     win.clear()
+    player_block.draw()
     #image.blit(win,0)
 
 @win.event
@@ -78,6 +78,7 @@ def on_key_release(symbol, modifiers):
 
 #Game updater
 def update(dt):
+    
     #if player block is touching any blocks below
         #player_block.freeze() current block, reset player block
     if curr_block.isColliding():
