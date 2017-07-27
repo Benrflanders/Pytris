@@ -2,19 +2,25 @@ import pyglet
 import board #uses the board class to check collisions
 from pyglet import sprite
 """
-A Block class
+A Block class, an extension of a sprite
 
 """
 
 
-class Block(object):
+class Block(sprite.Sprite):
+    dx = 0
+    dy = 0
     rotation = 0
-    
-    image = pyglet.image.load('assets/SquareBlock.png')
+    fall_speed = 1
 
-    def fall(self, speed):
-        #self.y+=speed
-        print("falling at speed %d" % speed)
+    
+    def init(self, image, x, y, batch=None):
+        super(Block, self).__init__(img, x, y, batch=batch)
+
+    def update(self, dt):
+        x = self.x + fall_speed
+        y = self.y
+        rotation = self.rotation
 
     def rotate(self):
         print("rotating")

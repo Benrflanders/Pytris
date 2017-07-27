@@ -32,14 +32,15 @@ from pyglet.text import Label
 #Get Resources
 image = pyglet.image.load('assets/SquareBlock.png')
 
-curr_block = block.Block()
 
 #main window
 win = pyglet.window.Window(400, 800, caption='Pytris')
 start_x = win.width/2
 start_y = win.height-image.height
 
-player_block = pyglet.sprite.Sprite(image, x=start_x, y=start_y)
+##player_block = pyglet.sprite.Sprite(image, x=start_x, y=start_y)
+curr_block = block.Block(image, x=start_x, y=start_y)
+difficulty = 1
 
 
 def game_over():
@@ -53,7 +54,7 @@ def game_over():
 @win.event
 def on_draw():
     win.clear()
-    player_block.draw()
+    curr_block.draw()
     #image.blit(win,0)
 
 @win.event
@@ -63,7 +64,6 @@ def on_key_press(symbol, modifiers):
     elif symbol == key.LEFT:
         print("LEFT")
     elif symbol == key.DOWN:
-        curr_block.fall(2)
         print("DOWN")
     elif symbol == key.UP:
         print("UP")
@@ -71,10 +71,6 @@ def on_key_press(symbol, modifiers):
     elif symbol == key.SPACE:
         print("SPACE")
 
-@win.event
-def on_key_release(symbol, modifiers):
-    if symbol == key.DOWN:
-        curr_block.fall(1)
 
 #Game updater
 def update(dt):
@@ -87,8 +83,11 @@ def update(dt):
             game_over()
         else:
             curr_block.new_block()
+    if curr_block.y <= 0:
+        #game_over()
+        print("GAME OVER")
             
-pyglet.clock.schedule_interval(update, 1/60.)
+pyglet.clock.schedule_interval(update, 1/60)
     
 #Start Game
 
