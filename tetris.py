@@ -20,6 +20,7 @@ import sys
 
 import pyglet
 import block
+import ui
 from pyglet.window import key
 from pyglet.text import Label
 
@@ -72,9 +73,17 @@ def on_key_press(symbol, modifiers):
         print("SPACE")
 
 
+def pause_game():
+    global paused
+    paused = True
+    set_overlay(ui.PauseMenu())
+
 #Game updater
 def update(dt):
     
+
+    #curr_block.update(dt)
+    print("Game is updating")
     #if player block is touching any blocks below
         #player_block.freeze() current block, reset player block
     if curr_block.isColliding():
@@ -88,7 +97,8 @@ def update(dt):
         print("GAME OVER")
             
 pyglet.clock.schedule_interval(update, 1/60)
-    
+pyglet.clock.schedule_interval(curr_block.update, 1)    
+
 #Start Game
 
 pyglet.app.run()

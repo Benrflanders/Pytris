@@ -11,16 +11,18 @@ class Block(sprite.Sprite):
     dx = 0
     dy = 0
     rotation = 0
-    fall_speed = 1
+    fall_speed = 15
 
     
     def init(self, image, x, y, batch=None):
         super(Block, self).__init__(img, x, y, batch=batch)
-
+        fall_speed = 1
+        
     def update(self, dt):
-        x = self.x + fall_speed
-        y = self.y
+        self.x = self.x
+        self.y = self.y - self.fall_speed
         rotation = self.rotation
+        print("Block is updating")
 
     def rotate(self):
         print("rotating")
