@@ -35,7 +35,7 @@ image = pyglet.image.load('assets/SquareBlock.png')
 
 
 #main window
-win = pyglet.window.Window(400, 800, caption='Pytris')
+win = pyglet.window.Window(300, 600, caption='Pytris')
 start_x = win.width/2
 start_y = win.height-image.height
 
@@ -61,8 +61,10 @@ def on_draw():
 @win.event
 def on_key_press(symbol, modifiers):
     if symbol == key.RIGHT:
+        curr_block.x += 5
         print("Right arrow was pressed")
     elif symbol == key.LEFT:
+        curr_block.x -= 5
         print("LEFT")
     elif symbol == key.DOWN:
         print("DOWN")
@@ -78,26 +80,23 @@ def pause_game():
     paused = True
     set_overlay(ui.PauseMenu())
 
+ 
+
 #Game updater
 def update(dt):
-    
+    global curr_block    
 
     #curr_block.update(dt)
     print("Game is updating")
     #if player block is touching any blocks below
         #player_block.freeze() current block, reset player block
-    if curr_block.isColliding():
-        curr_block.freeze()
-        if curr_block.check_defeat():
-            game_over()
-        else:
-            curr_block.new_block()
-    if curr_block.y <= 0:
-        #game_over()
-        print("GAME OVER")
+    if curr_block.y <= 20:
+        curr_block.new_block()
+        curr_block = block.Block(image, x=start_x, y=start_y)
+        
             
 pyglet.clock.schedule_interval(update, 1/60)
-pyglet.clock.schedule_interval(curr_block.update, 1)    
+pyglet.clock.schedule_interval(curr_block.update, 1/4)    
 
 #Start Game
 
