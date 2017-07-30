@@ -13,7 +13,7 @@ class Block(sprite.Sprite):
     rotation = 0
     fall_speed = 25
     is_player_block = True
-
+    
     
     def init(self, image, x, y, batch=None):
         super(Block, self).__init__(img, x, y, batch=batch)
@@ -49,6 +49,8 @@ class Block(sprite.Sprite):
         return self
 
     def isColliding(self):
+        #use double for loops to check position array for
+        #blocks touching the curr block
         return False
 
     def check_defeat(self):
