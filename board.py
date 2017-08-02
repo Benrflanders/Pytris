@@ -13,13 +13,14 @@ window = pyglet.window.Window() #window for testing block class
 '   and the game over line
 '''
 class Board():
-    def __init__(self, rows, cols):        
+    def __init__(self, rows, cols, win):
+        
         self.rows = rows
         self.cols = cols
         #self.create_board(0,0, 4, 4)
         global win_width
         global win_height
-        win_width, win_height = window.get_size()
+        win_width, win_height = win.get_size()
 
     @window.event
     def draw(self):
@@ -41,7 +42,7 @@ class Board():
             y += height
             x = 0
 
-test_board = Board(10,10)
+test_board = Board(10,10, window)
 
 @window.event
 def on_draw():
