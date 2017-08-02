@@ -17,19 +17,20 @@ class Board():
         #self.create_board(0,0, 4, 4)
 
     @window.event
-    def draw(self, xpos, ypos, width, height):
-        pyglet.gl.glLineWidth(5)
+    def draw(self, xpos=0, ypos=0, width=50, height=50):
+        pyglet.gl.glLineWidth(2)
+        pyglet.gl.glPointSize(10)
         x = xpos
         y = ypos
-        for i in range(self.rows):
-                        
+        for i in range(self.rows):       
             for j in range(self.cols):
-                pyglet.graphics.draw(4, pyglet.gl.GL_QUADS, ('v2f', [x,y,
-                                                                     x,-y,
-                                                                     -x,-y,
-                                                                     -x,y]))
-                x -= width
-            y -= height 
+                pyglet.graphics.draw(4, pyglet.gl.GL_POINTS, ('v2f', [x,y,
+                                                                     x,y+height,
+                                                                     x+width,y+height,
+                                                                     x+width,y+height]))
+                x += width
+            y += height
+            x = xpos
 
     #a single grid square, used for generating the background grid
     def create_grid_square(width, height, xpos, ypos):
@@ -54,6 +55,6 @@ test_board = Board(10,10)
 
 @window.event
 def on_draw():
-    test_board.draw(0,0, 10, 10)
+    test_board.draw()
 
 pyglet.app.run()
