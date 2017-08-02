@@ -1,4 +1,5 @@
 import pyglet
+from pyglet import sprite
 from pyglet.gl import *
 
 window = pyglet.window.Window() #window for testing block class

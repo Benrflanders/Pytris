@@ -14,16 +14,24 @@ class Block(sprite.Sprite):
     dx = 0
     dy = 0
     rotation = 0
-    fall_speed = 1
-
+    fall_speed = 25
+    is_player_block = True
+    
     
     def init(self, image, x, y, batch=None):
         super(Block, self).__init__(img, x, y, batch=batch)
-
+        self.is_player_block = True
+        fall_speed = 1
+        
     def update(self, dt):
-        x = self.x + fall_speed
-        y = self.y
-        rotation = self.rotation
+        if(self.is_player_block):
+            self.x = self.x
+            self.y = self.y - self.fall_speed
+            rotation = self.rotation
+            print("Player Block is updating")
+        else:
+            self.x = self.final_x
+            self.y = self.final_y
 
     def rotate(self):
         print("rotating")
@@ -38,14 +46,20 @@ class Block(sprite.Sprite):
         return self
 
     def isColliding(self):
+        #use double for loops to check position array for
+        #blocks touching the curr block
         return False
 
-    def check_defeat():
-        #if block is stopped: board.checkGameOver(self)
-        return True
 
-    def new_block():
-        return Block()
+    def check_defeat(self):
+        return False
+
+
+    def new_block(self):
+        self.final_x = self.x
+        self.final_y = self.y
+        self.is_player_block = False
+        
 
     #def update(self, dt):
 
