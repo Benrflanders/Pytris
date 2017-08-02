@@ -1,10 +1,13 @@
 import pyglet
 import board #uses the board class to check collisions
 from pyglet import sprite
+
+
 """
 A Block class, an extension of a sprite
 
 """
+
 
 
 class Block(sprite.Sprite):
@@ -38,13 +41,7 @@ class Block(sprite.Sprite):
     def freeze(self):
         print("freeze the block")
 
-    def collision_grid(self):
-        #if there is a 1 at any position in the matrix
-        #then check collisions for that location
-        collision_grid = [[0,0,0],
-                          [0,0,0],
-                          [0,0,0]]
-        
+
     def create_block():
         return self
 
@@ -53,8 +50,10 @@ class Block(sprite.Sprite):
         #blocks touching the curr block
         return False
 
+
     def check_defeat(self):
         return False
+
 
     def new_block(self):
         self.final_x = self.x
@@ -63,4 +62,6 @@ class Block(sprite.Sprite):
         
 
     #def update(self, dt):
-        
+
+
+    
