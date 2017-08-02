@@ -39,7 +39,7 @@ class Board():
                                                                      x+width,y+height]))
                 x += width
             y += height
-            x = xpos
+            x = 0
 
 test_board = Board(10,10)
 
